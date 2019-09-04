@@ -19,10 +19,6 @@ export default class App extends React.Component {
     this.updateCategory(category)
   }
 
-  componentWillUnmount() {
-    const { category } = this.state;
-    this.updateCategory(category)
-  }
 
   updateCategory(categoryType) {
     this.setState({
@@ -33,7 +29,7 @@ export default class App extends React.Component {
     if (!repos.categoryType) {
       getCategoryIds(categoryType)
         .then((data) => {
-          let smallData = data.slice(0,10)
+          let smallData = data.slice(0,50)
           this.setState({
             repos: {
               [categoryType]: smallData

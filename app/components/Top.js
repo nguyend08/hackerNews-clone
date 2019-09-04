@@ -20,8 +20,9 @@ function RenderTopInfo( {idArr} ) {
       } = id
 
       return (
-        <li key={title}>
-          {title}
+        <li key={id + title}>
+          <h2>{title}</h2>
+          <p>by {by} on {new Date(time * 1000).toLocaleString()}, with {descendants} comments</p>
         </li>
       )
     })}
@@ -63,7 +64,6 @@ export default class Top extends React.Component {
         <RenderTopInfo 
           idArr={top}
         />
-        <h1>hi</h1>
       </React.Fragment>
     )
   }
