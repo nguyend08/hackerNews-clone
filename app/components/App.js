@@ -1,28 +1,39 @@
 import React from "react";
-import { getCategoryArr } from "../utils/api";
+import { getCategoryIds } from "../utils/api";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      category: "newstories",
-      topstories: [],
-      newstories: []
+      category: "topstories",
+      repos: {},
     };
+    this.updateCategory = this.updateCategory.bind(this)
+  }
+
+  updateCategory(categoryType) {
+    this.setState({
+      category: categoryType
+    })
+
+    const { repos } = this.state
+    if (!repos.categoryType) {
+      getCategoryIds(categoryType)
+        .then((data) => {
+          this.setState({
+            repos: {
+              [categoryType]: data
+            }
+          })
+        })
+    }
   }
 
   componentDidMount() {
     const { category } = this.state;
-    getCategoryArr(category).then(data => {
-      data === "topstories"
-        ? this.setState({
-            topstories: data
-          })
-        : this.setState({
-            newstories: data
-          });
-    });
+    this.updateCategory(category)
+      
   }
 
   render() {
