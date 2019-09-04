@@ -1,39 +1,28 @@
 import React from "react";
-// import { getCategoryArr } from "../utils/api";
+import { getCategoryArr } from "../utils/api";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      category: "topstories",
-      topstories:[],
-      newstories:[]
-    }
-    this.getCategoryArr = this.getCategoryArr.bind(this)
-  }
-
-  getCategoryArr(type) {
-    return fetch(`https://hacker-news.firebaseio.com/v0/${type}.json?print=pretty`)
-      .then((res) => res.json())
-      .then((data) => {
-        type === 'topstories' ?
-         this.setState({
-          topstories : [data]
-        })
-        :
-        this.setState({
-          newstories : [data]
-        })
-      }
-        
-      )
-      .catch(error => console.error(error))
+      category: "newstories",
+      topstories: [],
+      newstories: []
+    };
   }
 
   componentDidMount() {
-    const { category } = this.state
-    this.getCategoryArr(category)
+    const { category } = this.state;
+    getCategoryArr(category).then(data => {
+      data === "topstories"
+        ? this.setState({
+            topstories: data
+          })
+        : this.setState({
+            newstories: data
+          });
+    });
   }
 
   render() {
