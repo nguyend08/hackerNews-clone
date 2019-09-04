@@ -1,40 +1,46 @@
 import React from "react";
+import { getInfo } from '../utils/api'
+
+function idGrid (ids) {
+  return (
+    <ul>
+     {ids.map((id) => (
+      //  getInfo(id)
+      //   .then(data => {
+      //     const {
+      //       by,
+      //       descendents,
+      //       kids,
+      //       score,
+      //       time,
+      //       title,
+      //       type,
+      //       url 
+      //     } = data
+      //    return (
+      //      <li>
+      //        <h1>{title}</h1>
+      //      </li>
+      //    )
+      //   })
+      <li>{id}</li>
+    ))}
+    </ul>
+  )
+}
 
 export default class Top extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      top: [],
-    }
   }
+
 
   render() {
     return (
-      // function ReposGrid ({ repos }) {
-        //     return (
-        //       <ul>
-        //        {repos.map((repo, id) => {
-        //          const {
-        //            by,
-        //            descendents,
-        //            kids,
-        //            score,
-        //            time,
-        //            title,
-        //            type,
-        //            url 
-        //          } = repo
-        //         return (
-        //           <li>
-        //             {repo}
-        //           </li>
-        //         )
-        //       })}
-        //       </ul>
-            
-        //     )
-        //   }
+      <React.Fragment>
+        {idGrid(this.props.ids)}
+        <h1>test</h1>
+      </React.Fragment>
     )
   }
 }

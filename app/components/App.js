@@ -1,5 +1,6 @@
 import React from "react";
 import { getCategoryIds } from "../utils/api";
+import Top from './Top'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -7,9 +8,15 @@ export default class App extends React.Component {
 
     this.state = {
       category: "topstories",
-      repos: {},
+      repos: [],
     };
     this.updateCategory = this.updateCategory.bind(this)
+  }
+
+
+  componentDidMount() {
+    const { category } = this.state;
+    this.updateCategory(category)
   }
 
   updateCategory(categoryType) {
@@ -27,19 +34,25 @@ export default class App extends React.Component {
             }
           })
         })
+        .catch(() => {
+          console.warn("Error fetching repos: ", error);
+
+          this.setState({
+            error: `There was an error fetching the repositories.`
+          });
+        });    
     }
   }
 
-  componentDidMount() {
-    const { category } = this.state;
-    this.updateCategory(category)
-      
-  }
+
 
   render() {
+    const { category, repos } = this.state
+      
     return (
       <div>
-        <h1>Hello World</h1>
+        {repos[category] && <Top ids={repos[category]} />}
+        
       </div>
     );
   }
