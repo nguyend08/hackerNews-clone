@@ -1,0 +1,25 @@
+.section {
+  list-style-type: none;
+  margin-bottom: 25px;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: -10px;
+}
+
+.title a {
+  text-decoration: none;
+  color: #800020;
+}
+
+.subtitle {
+  font-size:16px;
+  color: #808080;
+}
+
+.subtitle a {
+  color: black;
+  text-decoration: underline;
+}
+
