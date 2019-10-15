@@ -5,7 +5,7 @@ function RenderUserInfo({ idArr }) {
     <ul>
       {idArr.map(id => {
         const { by, descendants, kids, score, time, title, type, url } = id;
-        const { updateUser } = this.props
+       
 
         return (
           <li key={id + title} className="section">

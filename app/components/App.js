@@ -73,7 +73,7 @@ export default class Application extends React.Component {
 
     return (
       <div>
-        {repos[category] && <Stories ids={repos[category]} />}
+        {repos[category] && <Stories ids={repos[category]} updateUser={this.updateUser} />}
         {username[user] && <User user={username[user]}/>}
       </div>
     );
